@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    x:Class="DayCare.Views.BillingPage"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:vm="clr-namespace:DayCare.ViewModels"
+    x:DataType="vm:BillingViewModel"
+    Title="{Binding Title}">
+
+    <ScrollView>
+        <VerticalStackLayout Padding="16" Spacing="16">
+
+            <!-- Balance Summary -->
+            <Frame CornerRadius="16" Padding="20" BackgroundColor="{StaticResource Primary}" BorderColor="{StaticResource Primary}">
+                <VerticalStackLayout Spacing="8">
+                    <Label Text="Amount Due" TextColor="White" FontSize="14" Opacity="0.85" />
+                    <Label
+                        Text="{Binding AmountDue, StringFormat='${0:F2}'}"
+                        TextColor="White"
+                        FontSize="36"
+                        FontAttributes="Bold" />
+                </VerticalStackLayout>
+            </Frame>
+
+            <!-- Payment Status -->
+            <Frame
+                IsVisible="{Binding HasPaymentStatus}"
+                BackgroundColor="{StaticResource SuccessBackground}"
+                BorderColor="{StaticResource Success}"
+                CornerRadius="8"
+                Padding="12">
+                <Label Text="{Binding PaymentStatus}" TextColor="{StaticResource Success}" />
+            </Frame>
+
+            <!-- Activity Indicator -->
+            <ActivityIndicator
+                IsRunning="{Binding IsBusy}"
+                IsVisible="{Binding IsBusy}"
+                Color="{StaticResource Primary}"
+                HorizontalOptions="Center" />
+
+            <!-- Invoices -->
+            <Label Text="Invoices" FontAttributes="Bold" FontSize="18" />
+
+            <CollectionView ItemsSource="{Binding Invoices}">
+                <CollectionView.ItemTemplate>
+                    <DataTemplate x:DataType="vm:Invoice">
+                        <Frame Margin="0,6" CornerRadius="12" Padding="16" BorderColor="{StaticResource Gray200}">
+                            <Grid ColumnDefinitions="*,Auto" RowDefinitions="Auto,Auto,Auto">
+
+                                <Label Grid.Row="0" Grid.Column="0"
+                                       Text="{Binding InvoiceNumber}"
+                                       FontAttributes="Bold"
+                                       FontSize="14" />
+
+                                <Label Grid.Row="0" Grid.Column="1"
+                                       Text="{Binding StatusLabel}"
+                                       FontAttributes="Bold"
+                                       TextColor="{Binding IsPaid, Converter={StaticResource BoolToColorConverter}}" />
+
+                                <Label Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2"
+                                       Text="{Binding Description}"
+                                       FontSize="13"
+                                       TextColor="{StaticResource Gray600}" />
+
+                                <Label Grid.Row="2" Grid.Column="0"
+                                       Text="{Binding DueDate, StringFormat='Due: {0:MMM d, yyyy}'}"
+                                       FontSize="12"
+                                       TextColor="{StaticResource Gray500}" />
+
+                                <Button Grid.Row="2" Grid.Column="1"
+                                        Text="{Binding Amount, StringFormat='Pay ${0:F2}'}"
+                                        IsVisible="{Binding IsPaid, Converter={StaticResource InvertedBoolConverter}}"
+                                        Command="{Binding Source={RelativeSource AncestorType={x:Type ContentPage}}, Path=BindingContext.PayInvoiceCommand}"
+                                        CommandParameter="{Binding .}"
+                                        BackgroundColor="{StaticResource Primary}"
+                                        TextColor="White"
+                                        CornerRadius="8"
+                                        HeightRequest="36"
+                                        FontSize="13" />
+
+                            </Grid>
+                        </Frame>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
+
+        </VerticalStackLayout>
+    </ScrollView>
+
+</ContentPage>

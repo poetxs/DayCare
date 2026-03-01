@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    x:Class="DayCare.Views.PickupDropoffPage"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:vm="clr-namespace:DayCare.ViewModels"
+    x:DataType="vm:PickupDropoffViewModel"
+    Title="{Binding Title}">
+
+    <ScrollView>
+        <VerticalStackLayout Padding="16" Spacing="16">
+
+            <!-- Action Toggle -->
+            <Frame CornerRadius="12" Padding="16" BorderColor="{StaticResource Primary}">
+                <VerticalStackLayout Spacing="12">
+                    <Label Text="Action" FontAttributes="Bold" FontSize="16" />
+                    <HorizontalStackLayout Spacing="12">
+                        <RadioButton
+                            Content="Drop Off"
+                            IsChecked="{Binding IsDropOff}"
+                            GroupName="Action" />
+                        <RadioButton
+                            Content="Pick Up"
+                            IsChecked="{Binding IsDropOff, Converter={StaticResource InvertedBoolConverter}}"
+                            GroupName="Action" />
+                    </HorizontalStackLayout>
+                </VerticalStackLayout>
+            </Frame>
+
+            <!-- Child Name -->
+            <Frame CornerRadius="12" Padding="16" BorderColor="{StaticResource Gray300}">
+                <VerticalStackLayout Spacing="8">
+                    <Label Text="Child Name" FontAttributes="Bold" FontSize="14" />
+                    <Entry
+                        Text="{Binding ChildName}"
+                        Placeholder="Enter child's name"
+                        ClearButtonVisibility="WhileEditing" />
+                </VerticalStackLayout>
+            </Frame>
+
+            <!-- Date & Time -->
+            <Frame CornerRadius="12" Padding="16" BorderColor="{StaticResource Gray300}">
+                <VerticalStackLayout Spacing="8">
+                    <Label Text="Date &amp; Time" FontAttributes="Bold" FontSize="14" />
+                    <DatePicker Date="{Binding SelectedDate}" />
+                    <TimePicker Time="{Binding SelectedTime}" />
+                </VerticalStackLayout>
+            </Frame>
+
+            <!-- Submit Button -->
+            <Button
+                Text="Log Event"
+                Command="{Binding LogPickupDropoffCommand}"
+                IsEnabled="{Binding IsNotBusy}"
+                BackgroundColor="{StaticResource Primary}"
+                TextColor="White"
+                CornerRadius="8"
+                HeightRequest="52"
+                FontAttributes="Bold"
+                FontSize="16" />
+
+            <ActivityIndicator
+                IsRunning="{Binding IsBusy}"
+                IsVisible="{Binding IsBusy}"
+                Color="{StaticResource Primary}"
+                HorizontalOptions="Center" />
+
+            <!-- Status Message -->
+            <Frame
+                IsVisible="{Binding HasStatusMessage}"
+                BackgroundColor="{StaticResource SuccessBackground}"
+                BorderColor="{StaticResource Success}"
+                CornerRadius="8"
+                Padding="12">
+                <Label
+                    Text="{Binding StatusMessage}"
+                    TextColor="{StaticResource Success}" />
+            </Frame>
+
+            <!-- History -->
+            <Label Text="Recent Activity" FontAttributes="Bold" FontSize="16" />
+            <CollectionView ItemsSource="{Binding History}">
+                <CollectionView.ItemTemplate>
+                    <DataTemplate x:DataType="vm:PickupDropoffRecord">
+                        <Frame Margin="0,4" CornerRadius="8" Padding="12" BorderColor="{StaticResource Gray200}">
+                            <HorizontalStackLayout Spacing="12">
+                                <Label Text="{Binding ActionLabel}" FontAttributes="Bold" TextColor="{StaticResource Primary}" WidthRequest="80" />
+                                <VerticalStackLayout>
+                                    <Label Text="{Binding ChildName}" FontAttributes="Bold" />
+                                    <Label Text="{Binding DateTime, StringFormat='{0:MMM d, h:mm tt}'}" FontSize="12" TextColor="{StaticResource Gray600}" />
+                                </VerticalStackLayout>
+                            </HorizontalStackLayout>
+                        </Frame>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
+
+        </VerticalStackLayout>
+    </ScrollView>
+
+</ContentPage>

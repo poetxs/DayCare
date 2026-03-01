@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    x:Class="DayCare.Views.SettingsPage"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:vm="clr-namespace:DayCare.ViewModels"
+    x:DataType="vm:SettingsViewModel"
+    Title="{Binding Title}">
+
+    <ScrollView>
+        <VerticalStackLayout Padding="16" Spacing="16">
+
+            <!-- Profile Section -->
+            <Frame CornerRadius="12" Padding="20" BorderColor="{StaticResource Gray200}">
+                <VerticalStackLayout Spacing="8" HorizontalOptions="Center">
+                    <Ellipse
+                        Fill="{StaticResource Primary}"
+                        WidthRequest="72"
+                        HeightRequest="72"
+                        HorizontalOptions="Center" />
+                    <Label
+                        Text="{Binding UserName}"
+                        FontAttributes="Bold"
+                        FontSize="18"
+                        HorizontalOptions="Center" />
+                    <Label
+                        Text="{Binding UserEmail}"
+                        FontSize="13"
+                        TextColor="{StaticResource Gray600}"
+                        HorizontalOptions="Center" />
+                </VerticalStackLayout>
+            </Frame>
+
+            <!-- Preferences -->
+            <Label Text="Preferences" FontAttributes="Bold" FontSize="16" />
+
+            <Frame CornerRadius="12" Padding="16" BorderColor="{StaticResource Gray200}">
+                <VerticalStackLayout Spacing="12">
+                    <HorizontalStackLayout>
+                        <Label Text="Push Notifications" HorizontalOptions="FillAndExpand" VerticalOptions="Center" FontSize="15" />
+                        <Switch IsToggled="{Binding NotificationsEnabled}" OnColor="{StaticResource Primary}" />
+                    </HorizontalStackLayout>
+                    <BoxView HeightRequest="1" Color="{StaticResource Gray200}" />
+                    <HorizontalStackLayout>
+                        <Label Text="Dark Mode" HorizontalOptions="FillAndExpand" VerticalOptions="Center" FontSize="15" />
+                        <Switch IsToggled="{Binding DarkModeEnabled}" OnColor="{StaticResource Primary}" />
+                    </HorizontalStackLayout>
+                </VerticalStackLayout>
+            </Frame>
+
+            <!-- Account -->
+            <Label Text="Account" FontAttributes="Bold" FontSize="16" />
+
+            <Frame CornerRadius="12" Padding="16" BorderColor="{StaticResource Gray200}">
+                <VerticalStackLayout Spacing="12">
+                    <HorizontalStackLayout>
+                        <Label Text="Microsoft Entra ID" HorizontalOptions="FillAndExpand" VerticalOptions="Center" FontSize="15" />
+                        <Label Text="Connected" TextColor="{StaticResource Success}" VerticalOptions="Center" FontSize="13" />
+                    </HorizontalStackLayout>
+                </VerticalStackLayout>
+            </Frame>
+
+            <!-- Sign Out -->
+            <Button
+                Text="Sign Out"
+                Command="{Binding SignOutCommand}"
+                IsEnabled="{Binding IsNotBusy}"
+                BackgroundColor="{StaticResource Error}"
+                TextColor="White"
+                CornerRadius="8"
+                HeightRequest="52"
+                FontAttributes="Bold"
+                FontSize="16"
+                Margin="0,16,0,0" />
+
+            <ActivityIndicator
+                IsRunning="{Binding IsBusy}"
+                IsVisible="{Binding IsBusy}"
+                Color="{StaticResource Primary}"
+                HorizontalOptions="Center" />
+
+        </VerticalStackLayout>
+    </ScrollView>
+
+</ContentPage>
