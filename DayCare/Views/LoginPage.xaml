@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    x:Class="DayCare.Views.LoginPage"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:vm="clr-namespace:DayCare.ViewModels"
+    x:DataType="vm:LoginViewModel"
+    Title=""
+    NavigationPage.HasNavigationBar="False"
+    BackgroundColor="{AppThemeBinding Light={StaticResource White}, Dark={StaticResource Black}}">
+
+    <Grid RowDefinitions="*,Auto,*" Padding="32">
+
+        <!-- Logo / Branding -->
+        <VerticalStackLayout
+            Grid.Row="0"
+            VerticalOptions="End"
+            HorizontalOptions="Center"
+            Spacing="16">
+            <Image
+                Source="daycare_logo.png"
+                HeightRequest="100"
+                WidthRequest="100"
+                HorizontalOptions="Center" />
+            <Label
+                Text="DayCare"
+                FontSize="36"
+                FontAttributes="Bold"
+                HorizontalOptions="Center"
+                TextColor="{StaticResource Primary}" />
+            <Label
+                Text="Stay connected with your child's day"
+                FontSize="14"
+                HorizontalOptions="Center"
+                TextColor="{AppThemeBinding Light={StaticResource Gray600}, Dark={StaticResource Gray300}}" />
+        </VerticalStackLayout>
+
+        <!-- Login Section -->
+        <VerticalStackLayout
+            Grid.Row="1"
+            Spacing="16"
+            VerticalOptions="Center">
+
+            <!-- Error message -->
+            <Frame
+                IsVisible="{Binding HasError}"
+                BackgroundColor="{StaticResource ErrorBackground}"
+                BorderColor="{StaticResource Error}"
+                CornerRadius="8"
+                Padding="12">
+                <Label
+                    Text="{Binding ErrorMessage}"
+                    TextColor="{StaticResource Error}"
+                    FontSize="13" />
+            </Frame>
+
+            <!-- Sign In Button -->
+            <Button
+                Text="Sign In with Microsoft"
+                Command="{Binding SignInCommand}"
+                IsEnabled="{Binding IsNotBusy}"
+                BackgroundColor="{StaticResource Primary}"
+                TextColor="White"
+                FontAttributes="Bold"
+                CornerRadius="8"
+                HeightRequest="52"
+                FontSize="16" />
+
+            <!-- Loading indicator -->
+            <ActivityIndicator
+                IsRunning="{Binding IsBusy}"
+                IsVisible="{Binding IsBusy}"
+                Color="{StaticResource Primary}"
+                HorizontalOptions="Center" />
+
+        </VerticalStackLayout>
+
+        <!-- Footer -->
+        <Label
+            Grid.Row="2"
+            Text="Secured by Microsoft Entra ID"
+            FontSize="12"
+            HorizontalOptions="Center"
+            VerticalOptions="End"
+            Margin="0,0,0,16"
+            TextColor="{AppThemeBinding Light={StaticResource Gray500}, Dark={StaticResource Gray400}}" />
+
+    </Grid>
+
+</ContentPage>

@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    x:Class="DayCare.Views.FeedPage"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:vm="clr-namespace:DayCare.ViewModels"
+    x:DataType="vm:FeedViewModel"
+    Title="{Binding Title}">
+
+    <Grid RowDefinitions="Auto,*,Auto" Padding="0">
+
+        <!-- New Post Bar -->
+        <Frame Grid.Row="0" CornerRadius="0" Padding="16" BorderColor="{StaticResource Gray200}">
+            <HorizontalStackLayout Spacing="8">
+                <Entry
+                    Text="{Binding NewPostContent}"
+                    Placeholder="Share an update..."
+                    HorizontalOptions="FillAndExpand"
+                    ClearButtonVisibility="WhileEditing" />
+                <Button
+                    Text="Post"
+                    Command="{Binding AddPostCommand}"
+                    IsEnabled="{Binding IsNotBusy}"
+                    BackgroundColor="{StaticResource Primary}"
+                    TextColor="White"
+                    CornerRadius="8"
+                    WidthRequest="70" />
+            </HorizontalStackLayout>
+        </Frame>
+
+        <!-- Feed List -->
+        <RefreshView
+            Grid.Row="1"
+            Command="{Binding RefreshCommand}"
+            IsRefreshing="{Binding IsBusy}">
+            <CollectionView ItemsSource="{Binding Posts}">
+                <CollectionView.EmptyView>
+                    <VerticalStackLayout HorizontalOptions="Center" VerticalOptions="Center" Spacing="8">
+                        <Label Text="No posts yet." FontSize="16" TextColor="{StaticResource Gray500}" HorizontalOptions="Center" />
+                    </VerticalStackLayout>
+                </CollectionView.EmptyView>
+                <CollectionView.ItemTemplate>
+                    <DataTemplate x:DataType="vm:FeedPost">
+                        <Frame Margin="12,6" CornerRadius="12" Padding="16" BorderColor="{StaticResource Gray200}">
+                            <VerticalStackLayout Spacing="8">
+                                <HorizontalStackLayout>
+                                    <Label Text="{Binding AuthorName}" FontAttributes="Bold" FontSize="15" HorizontalOptions="FillAndExpand" />
+                                    <Label Text="{Binding TimeAgo}" FontSize="12" TextColor="{StaticResource Gray500}" VerticalOptions="Center" />
+                                </HorizontalStackLayout>
+                                <Label Text="{Binding Content}" FontSize="14" LineBreakMode="WordWrap" />
+                            </VerticalStackLayout>
+                        </Frame>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
+        </RefreshView>
+
+    </Grid>
+
+</ContentPage>

@@ -1,0 +1,28 @@
+## .NET MAUI build artifacts
+bin/
+obj/
+*.user
+*.suo
+.vs/
+_ReSharper*/
+*.DotSettings.user
+
+## macOS
+.DS_Store
+*.DS_Store
+
+## NuGet
+packages/
+*.nupkg
+project.lock.json
+project.fragment.lock.json
+artifacts/
+
+## Windows
+Thumbs.db
+
+## Build results
+[Dd]ebug/
+[Rr]elease/
+[Bb]in/
+[Oo]bj/
