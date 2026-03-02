@@ -9,6 +9,7 @@
     <SingleProject>true</SingleProject>
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
+    <NoWarn>$(NoWarn);MVVMTK0045</NoWarn>
 
     <!-- MAUI Version - defined automatically by the MAUI workload SDK; override here if needed -->
     <MauiVersion Condition="'$(MauiVersion)' == ''">10.0.0</MauiVersion>
