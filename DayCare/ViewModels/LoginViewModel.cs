@@ -38,8 +38,10 @@ public partial class LoginViewModel : BaseViewModel
 
             if (user != null)
             {
+#if PLATFORM
                 // Navigate to the main shell with tabs
                 Application.Current!.Windows[0].Page = _serviceProvider.GetRequiredService<AppShell>();
+#endif
             }
             else
             {

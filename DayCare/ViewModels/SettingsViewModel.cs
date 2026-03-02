@@ -50,9 +50,11 @@ public partial class SettingsViewModel : BaseViewModel
             IsBusy = true;
             await _authService.SignOutAsync();
 
+#if PLATFORM
             // Navigate back to login
             Application.Current!.Windows[0].Page =
                 new NavigationPage(_serviceProvider.GetRequiredService<Views.LoginPage>());
+#endif
         }
         finally
         {
