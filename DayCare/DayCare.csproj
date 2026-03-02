@@ -1,8 +1,8 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFrameworks>net9.0-android;net9.0-ios;net9.0-maccatalyst</TargetFrameworks>
-    <TargetFrameworks Condition="$([MSBuild]::IsOSPlatform('windows'))">$(TargetFrameworks);net9.0-windows10.0.19041.0</TargetFrameworks>
+    <TargetFrameworks>net10.0-android;net10.0-ios;net10.0-maccatalyst</TargetFrameworks>
+    <TargetFrameworks Condition="$([MSBuild]::IsOSPlatform('windows'))">$(TargetFrameworks);net10.0-windows10.0.19041.0</TargetFrameworks>
     <OutputType>Exe</OutputType>
     <RootNamespace>DayCare</RootNamespace>
     <UseMaui>true</UseMaui>
@@ -11,10 +11,10 @@
     <Nullable>enable</Nullable>
 
     <!-- MAUI Version - defined automatically by the MAUI workload SDK; override here if needed -->
-    <MauiVersion Condition="'$(MauiVersion)' == ''">9.0.0</MauiVersion>
+    <MauiVersion Condition="'$(MauiVersion)' == ''">10.0.0</MauiVersion>
 
     <!-- Display name -->
-    <ApplicationTitle>DayCare</ApplicationTitle>
+    <ApplicationTitle>TotDesk</ApplicationTitle>
 
     <!-- App Identifier -->
     <ApplicationId>com.daycare.app</ApplicationId>
@@ -32,10 +32,10 @@
 
   <ItemGroup>
     <!-- App Icon -->
-    <MauiIcon Include="Resources\AppIcon\appicon.svg" ForegroundFile="Resources\AppIcon\appiconfg.svg" Color="#2563EB" />
+    <MauiIcon Include="Resources\AppIcon\appicon.svg" ForegroundFile="Resources\AppIcon\appiconfg.svg" Color="#7EB3FF" />
 
     <!-- Splash Screen -->
-    <MauiSplashScreen Include="Resources\Splash\splash.svg" Color="#2563EB" BaseSize="128,128" />
+    <MauiSplashScreen Include="Resources\Splash\splash.svg" Color="#FFFFFF" BaseSize="128,128" />
 
     <!-- Images -->
     <MauiImage Include="Resources\Images\*" />
@@ -53,7 +53,7 @@
     <PackageReference Include="Microsoft.Identity.Client.Extensions.Msal" Version="4.67.2" />
     <PackageReference Include="Microsoft.Maui.Controls" Version="$(MauiVersion)" />
     <PackageReference Include="Microsoft.Maui.Controls.Compatibility" Version="$(MauiVersion)" />
-    <PackageReference Include="Microsoft.Extensions.Logging.Debug" Version="9.0.0" />
+    <PackageReference Include="Microsoft.Extensions.Logging.Debug" Version="10.0.0" />
   </ItemGroup>
 
 </Project>

@@ -1,13 +1,12 @@
-using DayCare.Services;
 using DayCare.Views;
 
 namespace DayCare;
 
 public partial class App : Application
 {
-    public App(IAuthService authService, LoginPage loginPage)
+    public App(IServiceProvider serviceProvider)
     {
         InitializeComponent();
-        MainPage = new NavigationPage(loginPage);
+        MainPage = new NavigationPage(serviceProvider.GetRequiredService<LoginPage>());
     }
 }

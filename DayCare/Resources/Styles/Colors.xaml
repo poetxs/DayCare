@@ -3,12 +3,13 @@
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml">
 
-    <!-- Brand Colors -->
-    <Color x:Key="Primary">#2563EB</Color>
-    <Color x:Key="PrimaryDark">#1D4ED8</Color>
-    <Color x:Key="PrimaryLight">#DBEAFE</Color>
-    <Color x:Key="Secondary">#64748B</Color>
-    <Color x:Key="Accent">#0EA5E9</Color>
+    <!-- Brand Colors – Bright Pastels -->
+    <Color x:Key="Primary">#7EB3FF</Color>          <!-- Pastel Blue -->
+    <Color x:Key="PrimaryDark">#5C9AFF</Color>
+    <Color x:Key="PrimaryLight">#D4E6FF</Color>
+    <Color x:Key="Secondary">#7ED67E</Color>         <!-- Pastel Green -->
+    <Color x:Key="Accent">#FF7E7E</Color>            <!-- Pastel Red -->
+    <Color x:Key="AccentYellow">#FFE57E</Color>      <!-- Pastel Yellow -->
 
     <!-- Semantic Colors -->
     <Color x:Key="Success">#16A34A</Color>
@@ -30,5 +31,6 @@
     <Color x:Key="Gray700">#374151</Color>
     <Color x:Key="Gray800">#1F2937</Color>
     <Color x:Key="Gray900">#111827</Color>
+    <Color x:Key="Gray950">#030712</Color>
 
 </ResourceDictionary>

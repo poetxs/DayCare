@@ -7,7 +7,7 @@
     x:DataType="vm:LoginViewModel"
     Title=""
     NavigationPage.HasNavigationBar="False"
-    BackgroundColor="{AppThemeBinding Light={StaticResource White}, Dark={StaticResource Black}}">
+    BackgroundColor="{StaticResource White}">
 
     <Grid RowDefinitions="*,Auto,*" Padding="32">
 
@@ -32,7 +32,7 @@
                 Text="Stay connected with your child's day"
                 FontSize="14"
                 HorizontalOptions="Center"
-                TextColor="{AppThemeBinding Light={StaticResource Gray600}, Dark={StaticResource Gray300}}" />
+                TextColor="{StaticResource Gray600}" />
         </VerticalStackLayout>
 
         <!-- Login Section -->
@@ -83,7 +83,7 @@
             HorizontalOptions="Center"
             VerticalOptions="End"
             Margin="0,0,0,16"
-            TextColor="{AppThemeBinding Light={StaticResource Gray500}, Dark={StaticResource Gray400}}" />
+            TextColor="{StaticResource Gray500}" />
 
     </Grid>
 

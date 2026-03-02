@@ -19,7 +19,8 @@ public static class MauiProgram
             });
 
         // Register services
-        builder.Services.AddSingleton<IAuthService, MsalAuthService>();
+        // TODO: Replace MockAuthService with MsalAuthService once Azure AD is configured.
+        builder.Services.AddSingleton<IAuthService, MockAuthService>();
 
         // Register AppShell
         builder.Services.AddSingleton<AppShell>();
