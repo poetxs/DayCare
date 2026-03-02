@@ -11,7 +11,7 @@
         <VerticalStackLayout Padding="16" Spacing="16">
 
             <!-- Balance Summary -->
-            <Frame CornerRadius="16" Padding="20" BackgroundColor="{StaticResource Primary}" BorderColor="{StaticResource Primary}">
+            <Border Padding="20" BackgroundColor="{StaticResource Primary}" Stroke="{StaticResource Primary}" StrokeShape="RoundRectangle 16">
                 <VerticalStackLayout Spacing="8">
                     <Label Text="Amount Due" TextColor="White" FontSize="14" Opacity="0.85" />
                     <Label
@@ -20,17 +20,17 @@
                         FontSize="36"
                         FontAttributes="Bold" />
                 </VerticalStackLayout>
-            </Frame>
+            </Border>
 
             <!-- Payment Status -->
-            <Frame
+            <Border
                 IsVisible="{Binding HasPaymentStatus}"
                 BackgroundColor="{StaticResource SuccessBackground}"
-                BorderColor="{StaticResource Success}"
-                CornerRadius="8"
+                Stroke="{StaticResource Success}"
+                StrokeShape="RoundRectangle 8"
                 Padding="12">
                 <Label Text="{Binding PaymentStatus}" TextColor="{StaticResource Success}" />
-            </Frame>
+            </Border>
 
             <!-- Activity Indicator -->
             <ActivityIndicator
@@ -45,7 +45,7 @@
             <CollectionView ItemsSource="{Binding Invoices}">
                 <CollectionView.ItemTemplate>
                     <DataTemplate x:DataType="vm:Invoice">
-                        <Frame Margin="0,6" CornerRadius="12" Padding="16" BorderColor="{StaticResource Gray200}">
+                        <Border Margin="0,6" StrokeShape="RoundRectangle 12" Padding="16" Stroke="{StaticResource Gray200}">
                             <Grid ColumnDefinitions="*,Auto" RowDefinitions="Auto,Auto,Auto">
 
                                 <Label Grid.Row="0" Grid.Column="0"
@@ -80,7 +80,7 @@
                                         FontSize="13" />
 
                             </Grid>
-                        </Frame>
+                        </Border>
                     </DataTemplate>
                 </CollectionView.ItemTemplate>
             </CollectionView>

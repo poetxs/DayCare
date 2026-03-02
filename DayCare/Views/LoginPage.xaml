@@ -42,17 +42,17 @@
             VerticalOptions="Center">
 
             <!-- Error message -->
-            <Frame
+            <Border
                 IsVisible="{Binding HasError}"
                 BackgroundColor="{StaticResource ErrorBackground}"
-                BorderColor="{StaticResource Error}"
-                CornerRadius="8"
+                Stroke="{StaticResource Error}"
+                StrokeShape="RoundRectangle 8"
                 Padding="12">
                 <Label
                     Text="{Binding ErrorMessage}"
                     TextColor="{StaticResource Error}"
                     FontSize="13" />
-            </Frame>
+            </Border>
 
             <!-- Sign In Button -->
             <Button
